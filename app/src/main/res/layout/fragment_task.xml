@@ -11,14 +11,14 @@
         android:id="@+id/et_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Title" />
+        android:hint="@string/title" />
 
     <EditText
         android:id="@+id/et_desc"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="4dp"
-        android:hint="Description" />
+        android:hint="@string/description" />
 
     <Button
         android:id="@+id/btn_save"
@@ -26,7 +26,9 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center"
         android:layout_marginTop="16dp"
-        android:text="Save" />
+        android:backgroundTint="@color/white"
+        android:textColor="@color/black"
+        android:text="@string/save" />
 
 
 </LinearLayout>

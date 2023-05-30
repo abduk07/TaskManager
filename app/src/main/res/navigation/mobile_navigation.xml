@@ -23,8 +23,18 @@
         android:label="@string/title_notifications"
         tools:layout="@layout/fragment_notifications" />
     <fragment
-        android:id="@+id/taskFragment"
+        android:id="@+id/navigation_task"
         android:name="com.example.taskmanager.ui.task.TaskFragment"
-        android:label="fragment_task"
+        android:label="Task"
         tools:layout="@layout/fragment_task" />
+    <fragment
+        android:id="@+id/navigation_profile"
+        android:name="com.example.taskmanager.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/fragment_profile" />
+    <fragment
+        android:id="@+id/navigation_onboard"
+        android:name="com.example.taskmanager.ui.onboard.OnBoardFragment"
+        android:label="fragment_on_board"
+        tools:layout="@layout/fragment_on_board" />
 </navigation>

@@ -8,6 +8,7 @@ import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
+import com.example.taskmanager.App
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import com.example.taskmanager.model.Task
 
@@ -28,13 +29,15 @@ class TaskFragment : Fragment() {
         with(binding) {
             btnSave.setOnClickListener {
                 val data = Task(
-                    etTitle.text.toString(), etDesc.text.toString())
-                            setFragmentResult(RESULT_REQUEST, bundleOf(RESULT_KEY to data))
+                 title =   etTitle.text.toString(),desc=  etDesc.text.toString()
+                )
+                App.db.dao().insert(data)
                 findNavController().navigateUp()
             }
         }
     }
-    companion object{
+
+    companion object {
         const val RESULT_REQUEST = "request.task"
         const val RESULT_KEY = "key.task"
     }

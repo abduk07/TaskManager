@@ -10,7 +10,6 @@ import com.example.taskmanager.databinding.FragmentDashboardBinding
 class DashboardFragment : Fragment() {
 
     private var _binding: FragmentDashboardBinding? = null
-
     private val binding get() = _binding!!
 
     override fun onCreateView(
