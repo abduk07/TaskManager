@@ -11,4 +11,6 @@
     <string name="description">Description</string>
     <string name="title">Title</string>
     <string name="skip">Skip</string>
+    <string name="null_toast">Title and desc cannot be empty</string>
+    <string name="update">Update</string>
 </resources>

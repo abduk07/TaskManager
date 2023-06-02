@@ -4,17 +4,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.setFragmentResult
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.App
+import com.example.taskmanager.R
 import com.example.taskmanager.databinding.FragmentTaskBinding
 import com.example.taskmanager.model.Task
+import com.example.taskmanager.ui.home.HomeFragment
 
 
 class TaskFragment : Fragment() {
     private lateinit var binding: FragmentTaskBinding
+    private var tasks: Task? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -26,19 +27,44 @@ class TaskFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initData()
         with(binding) {
             btnSave.setOnClickListener {
-                val data = Task(
-                 title =   etTitle.text.toString(),desc=  etDesc.text.toString()
-                )
-                App.db.dao().insert(data)
+                if (binding.btnSave.text.equals(getString(R.string.update))) {
+                    onUpdate()
+                } else {
+                    onSave()
+                }
                 findNavController().navigateUp()
             }
         }
     }
 
-    companion object {
-        const val RESULT_REQUEST = "request.task"
-        const val RESULT_KEY = "key.task"
+    private fun onSave() {
+        val result = Task(
+            title = binding.etTitle.toString(),
+            desc = binding.etDesc.toString()
+        )
+        App.db.dao().insert(result)
     }
+
+    private fun onUpdate() {
+        val result = tasks?.copy(
+            title = binding.etTitle.toString(),
+            desc = binding.etDesc.toString()
+        )
+        if (result != null) {
+            App.db.dao().update(result)
+        }
+    }
+
+    private fun initData() {
+        tasks = arguments?.getSerializable(HomeFragment.TASKS_KEY) as Task?
+        tasks?.let {
+            binding.btnSave.text = getString(R.string.update)
+            binding.etTitle.setText(it.title)
+            binding.etDesc.setText(it.desc)
+        }
+    }
+
 }

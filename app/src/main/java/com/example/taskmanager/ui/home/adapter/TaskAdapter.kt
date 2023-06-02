@@ -6,14 +6,11 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.taskmanager.databinding.ItemTasksBinding
 import com.example.taskmanager.model.Task
 
-class TaskAdapter(private val longClick: (Task) -> Unit) :
+class TaskAdapter(private val longClick: (Task) -> Unit, private val updateClick: (Task) -> Unit) :
     RecyclerView.Adapter<TaskAdapter.TaskViewHolder>() {
+
     private var arrayList = ArrayList<Task>()
 
-    //    fun addData(task: Task) {
-//        arrayList.add(0, task)
-//        notifyItemChanged(0)
-//    }
     fun addData(tasks: List<Task>) {
         arrayList.clear()
         arrayList.addAll(tasks)
@@ -29,7 +26,7 @@ class TaskAdapter(private val longClick: (Task) -> Unit) :
     }
 
     override fun onBindViewHolder(holder: TaskViewHolder, position: Int) {
-        holder.onBind()
+        holder.onBind(arrayList[position])
     }
 
     override fun getItemCount(): Int {
@@ -38,14 +35,17 @@ class TaskAdapter(private val longClick: (Task) -> Unit) :
 
     inner class TaskViewHolder(private val binding: ItemTasksBinding) :
         RecyclerView.ViewHolder(binding.root) {
-        fun onBind() {
+        fun onBind(task: Task) {
             with(binding) {
-                tvTitle.text = arrayList[position].title
-                tvDesc.text = arrayList[position].desc
+                tvTitle.text = task.title
+                tvDesc.text = task.desc
 
                 itemView.setOnLongClickListener {
                     longClick(arrayList[adapterPosition])
                     false
+                }
+                binding.root.setOnClickListener {
+                    updateClick(task)
                 }
             }
         }

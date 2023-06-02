@@ -64,4 +64,5 @@ class ProfileFragment : Fragment() {
             binding.etName.setText(pref.getName())
         }
     }
+
 }

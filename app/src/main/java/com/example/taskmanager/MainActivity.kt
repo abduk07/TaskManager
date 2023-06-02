@@ -33,7 +33,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_dashboard,
                 R.id.navigation_notifications,
                 R.id.navigation_profile,
-                R.id.navigation_onboard
+                R.id.navigation_onboard,
+                R.id.navigation_task
             )
         )
 

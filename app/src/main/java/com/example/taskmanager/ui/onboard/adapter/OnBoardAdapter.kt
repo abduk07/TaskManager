@@ -1,4 +1,4 @@
-package com.example.taskmanager.ui.onboard.Adapter
+package com.example.taskmanager.ui.onboard.adapter
 
 import android.view.LayoutInflater
 import android.view.ViewGroup

@@ -8,7 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentOnBoardBinding
-import com.example.taskmanager.ui.onboard.Adapter.OnBoardAdapter
+import com.example.taskmanager.ui.onboard.adapter.OnBoardAdapter
 
 class OnBoardFragment : Fragment() {
     private lateinit var binding: FragmentOnBoardBinding
