@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.App
@@ -41,17 +42,28 @@ class TaskFragment : Fragment() {
     }
 
     private fun onSave() {
-        val result = Task(
-            title = binding.etTitle.toString(),
-            desc = binding.etDesc.toString()
-        )
+        val title = binding.etTitle.text.toString()
+        val desc = binding.etDesc.text.toString()
+
+        if (title.isEmpty()) {
+            Toast.makeText(requireContext(), "Заголовок пустой", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        if (desc.isEmpty()) {
+            Toast.makeText(requireContext(), "Описание пустое", Toast.LENGTH_SHORT).show()
+            return
+        }
+
+        val result = Task(title = title, desc = desc)
         App.db.dao().insert(result)
     }
 
+
     private fun onUpdate() {
         val result = tasks?.copy(
-            title = binding.etTitle.toString(),
-            desc = binding.etDesc.toString()
+            title = binding.etTitle.text.toString(),
+            desc = binding.etDesc.text.toString()
         )
         if (result != null) {
             App.db.dao().update(result)
