@@ -1,16 +1,15 @@
 package com.example.taskmanager.ui.profile
 
-import android.app.Activity
-import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.activity.result.ActivityResult
-import androidx.activity.result.contract.ActivityResultContracts
 import androidx.fragment.app.Fragment
+import androidx.navigation.fragment.findNavController
+import com.example.taskmanager.R
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentProfileBinding
+import com.example.taskmanager.model.InfoProfile
 import com.example.taskmanager.utils.loadImage
 
 class ProfileFragment : Fragment() {
@@ -28,40 +27,22 @@ class ProfileFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         pref = Pref(requireContext())
-        saveImage()
-        saveClick()
+        redactorProfile()
+        initData()
     }
 
-    private fun saveImage() {
+    private fun initData() {
         with(binding) {
-            val launcher = registerForActivityResult(
-                ActivityResultContracts.StartActivityForResult()
-            ) { result: ActivityResult ->
-                if (result.resultCode == Activity.RESULT_OK
-                    && result.data != null
-                ) {
-                    val photoUri = result.data?.data.toString()
-                    pref.savePhoto(photoUri)
-                    ivPerson.loadImage(photoUri)
-                }
-            }
             ivPerson.loadImage(pref.getPhoto())
-            ivPerson.setOnClickListener {
-                val intent = Intent()
-                intent.type = "image/*"
-                intent.action = Intent.ACTION_GET_CONTENT
-                launcher.launch(intent)
-            }
+            tvName.text = pref.getName()
+            tvNameTop.text = pref.getName()
         }
     }
 
-    private fun saveClick() {
-        with(binding) {
-            btnSave.setOnClickListener {
-                val name = etName.text.toString()
-                pref.saveName(name)
-            }
-            binding.etName.setText(pref.getName())
+
+    private fun redactorProfile() {
+        binding.btnRedactorProfile.setOnClickListener {
+            findNavController().navigate(R.id.navigation_redactor_profile)
         }
     }
 

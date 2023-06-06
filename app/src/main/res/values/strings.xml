@@ -13,4 +13,8 @@
     <string name="skip">Skip</string>
     <string name="null_toast">Title and desc cannot be empty</string>
     <string name="update">Update</string>
+    <string name="your_name">Your name</string>
+    <string name="choose_image">Choose image</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="fill">Fill</string>
 </resources>

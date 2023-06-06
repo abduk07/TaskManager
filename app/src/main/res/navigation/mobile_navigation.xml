@@ -43,4 +43,9 @@
         android:name="com.example.taskmanager.ui.onboard.OnBoardFragment"
         android:label="fragment_on_board"
         tools:layout="@layout/fragment_on_board" />
+    <fragment
+        android:id="@+id/navigation_redactor_profile"
+        android:name="com.example.taskmanager.ui.profileredactor.ProfileRedactorFragment"
+        android:label="fragment_profile_redactor"
+        tools:layout="@layout/fragment_profile_redactor" />
 </navigation>

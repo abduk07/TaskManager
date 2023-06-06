@@ -34,7 +34,8 @@ class MainActivity : AppCompatActivity() {
                 R.id.navigation_notifications,
                 R.id.navigation_profile,
                 R.id.navigation_onboard,
-                R.id.navigation_task
+                R.id.navigation_task,
+                R.id.navigation_redactor_profile
             )
         )
 

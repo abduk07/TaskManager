@@ -1,5 +1,6 @@
 package com.example.taskmanager.ui.home.adapter
 
+import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
@@ -11,6 +12,7 @@ class TaskAdapter(private val longClick: (Task) -> Unit, private val updateClick
 
     private var arrayList = ArrayList<Task>()
 
+    @SuppressLint("NotifyDataSetChanged")
     fun addData(tasks: List<Task>) {
         arrayList.clear()
         arrayList.addAll(tasks)

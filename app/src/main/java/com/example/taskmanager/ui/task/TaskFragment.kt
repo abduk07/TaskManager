@@ -29,14 +29,24 @@ class TaskFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         initData()
+
         with(binding) {
             btnSave.setOnClickListener {
-                if (binding.btnSave.text.equals(getString(R.string.update))) {
-                    onUpdate()
+                if (btnSave.text.equals("update")) {
+                    if (etTitle.text.isNotBlank() && etDesc.text.isNotBlank()) {
+                        onUpdate()
+                        findNavController().navigateUp()
+                    } else
+                        Toast.makeText(requireContext(), R.string.fill, Toast.LENGTH_SHORT)
+                            .show()
                 } else {
-                    onSave()
+                    if (etTitle.text.isNotBlank() && etDesc.text.isNotBlank()) {
+                        onSave()
+                        findNavController().navigateUp()
+                    } else
+                        Toast.makeText(requireContext(), R.string.fill, Toast.LENGTH_SHORT)
+                            .show()
                 }
-                findNavController().navigateUp()
             }
         }
     }
@@ -44,16 +54,6 @@ class TaskFragment : Fragment() {
     private fun onSave() {
         val title = binding.etTitle.text.toString()
         val desc = binding.etDesc.text.toString()
-
-        if (title.isEmpty()) {
-            Toast.makeText(requireContext(), "Заголовок пустой", Toast.LENGTH_SHORT).show()
-            return
-        }
-
-        if (desc.isEmpty()) {
-            Toast.makeText(requireContext(), "Описание пустое", Toast.LENGTH_SHORT).show()
-            return
-        }
 
         val result = Task(title = title, desc = desc)
         App.db.dao().insert(result)

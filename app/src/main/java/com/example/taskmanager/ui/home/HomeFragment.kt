@@ -52,7 +52,6 @@ class HomeFragment : Fragment() {
     private fun getDataResult() {
         val tasks = App.db.dao().getAll()
         adapter.addData(tasks)
-
     }
 
     private fun longClick(task: Task) {
@@ -74,5 +73,6 @@ class HomeFragment : Fragment() {
     companion object {
         const val TASKS_KEY = "tasks.key"
     }
+
 }
 
