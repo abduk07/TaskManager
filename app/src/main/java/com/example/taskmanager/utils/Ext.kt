@@ -8,7 +8,6 @@ import com.bumptech.glide.Glide
     fun ImageView.loadImage(url: String?) {
     Glide.with(this).load(url).into(this)
 
-    fun Toast.showToast(toast: String?) {
-        Toast.makeText(context, toast, Toast.LENGTH_SHORT).show()
-    }
+        fun Context.toast(message: CharSequence) =
+            Toast.makeText(this, message, Toast.LENGTH_SHORT).show()
 }

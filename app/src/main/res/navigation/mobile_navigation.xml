@@ -48,4 +48,9 @@
         android:name="com.example.taskmanager.ui.profileredactor.ProfileRedactorFragment"
         android:label="fragment_profile_redactor"
         tools:layout="@layout/fragment_profile_redactor" />
+    <fragment
+        android:id="@+id/navigation_auth"
+        android:name="com.example.taskmanager.ui.auth.AuthFragment"
+        android:label="fragment_auth"
+        tools:layout="@layout/fragment_auth" />
 </navigation>

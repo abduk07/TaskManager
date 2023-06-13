@@ -2,6 +2,7 @@ plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -37,20 +38,29 @@ android {
 }
 
 dependencies {
+    //firebase auth
+    implementation 'com.google.firebase:firebase-auth-ktx:22.0.0'
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
+
     //data base room
     def room_version = "2.5.1"
     implementation "androidx.room:room-runtime:$room_version"
     annotationProcessor "androidx.room:room-compiler:$room_version"
+
     // To use Kotlin annotation processing tool (kapt)
     kapt "androidx.room:room-compiler:$room_version"
+
     //navigation
     def nav_version = "2.5.3"
     implementation "androidx.navigation:navigation-fragment-ktx:$nav_version"
     implementation "androidx.navigation:navigation-ui-ktx:$nav_version"
+
     //glide
     implementation 'com.github.bumptech.glide:glide:4.15.1'
+
     //circle indicator
     implementation 'me.relex:circleindicator:2.1.6'
+
     //circle imageView
     implementation 'de.hdodenhof:circleimageview:3.1.0'
 

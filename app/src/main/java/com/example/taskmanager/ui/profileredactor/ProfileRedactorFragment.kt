@@ -1,7 +1,6 @@
 package com.example.taskmanager.ui.profileredactor
 
 import android.app.Activity
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -15,8 +14,8 @@ import androidx.navigation.fragment.findNavController
 import com.example.taskmanager.R
 import com.example.taskmanager.data.local.Pref
 import com.example.taskmanager.databinding.FragmentProfileRedactorBinding
-import com.example.taskmanager.model.InfoProfile
 import com.example.taskmanager.utils.loadImage
+import com.google.firebase.auth.FirebaseAuth
 
 class ProfileRedactorFragment : Fragment() {
     private lateinit var binding: FragmentProfileRedactorBinding
@@ -36,7 +35,19 @@ class ProfileRedactorFragment : Fragment() {
         binding.etName.setText(pref.getName())
         saveImage()
         saveClick()
+        exitClick()
     }
+
+    private fun exitClick() {
+        binding.ivExit.setOnClickListener {
+            if (FirebaseAuth.getInstance().currentUser != null) {
+                FirebaseAuth.getInstance().signOut()
+                findNavController().popBackStack(R.id.navigation_profile,false)
+                findNavController().navigate(R.id.navigation_auth)
+            }
+        }
+    }
+
 
     private fun saveImage() {
 
